@@ -2,26 +2,17 @@
 require_once __DIR__ . '/autoload.php';
 require_once __DIR__ . '/endroid-qr-code.php';
 include_once __DIR__ . '/functions.php';
-use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Writer\PngWriter;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $_POST['amount'];
     $danaNumber = '0895402567224';
     $name = 'KEPO LOE';
-
-    // Membuat URL DANA untuk pembayaran
     $danaPaymentUrl = "https://link.dana.id/qr/$danaNumber/$amount";  // Pastikan format URL sesuai dengan API DANA
-
-    // Membuat QR Code dari URL DANA
     $qrCode = new QrCode($danaPaymentUrl);
     $writer = new PngWriter();
-    $qrCode->setSize(300); // Ukuran QR code
-    $image = $writer->write($qrCode);  // Menyimpan gambar QR Code
-
-    // Menyimpan gambar QR ke file
+    $qrCode->setSize(300);
+    $image = $writer->write($qrCode); 
     $qrFilePath = 'qrcode.png';
     file_put_contents($qrFilePath, $image->getString());
-
     echo "<div class='flex justify-center mt-6'>
             <h2 class='text-lg font-semibold text-center mb-4'>Scan QR Code for Payment</h2>
             <img src='$qrFilePath' alt='QR Code for payment' class='w-64 h-64'>
