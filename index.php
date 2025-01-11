@@ -1,6 +1,6 @@
 <?php
 include 'functions.php';
-require 'autoload.php'; // Pastikan autoload Composer sudah termasuk
+require 'autoload.php';  // Memuat autoloader manual
 
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
