@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $_POST['amount'];
     $danaNumber = '0895402567224';
     $name = 'KEPO LOE';
-    $danaPaymentUrl = "https://link.dana.id/qr/$danaNumber/$amount";  // Pastikan format URL sesuai dengan API DANA
+    $danaPaymentUrl = "https://link.dana.id/qr/$danaNumber/$amount";
     $qrCode = new QrCode($danaPaymentUrl);
     $writer = new PngWriter();
     $qrCode->setSize(300);
@@ -20,31 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayPal & DANA Integration</title>
+    <title>pay-wanzofc</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-    <!-- Alpine.js -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-
-    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- AOS (Animate On Scroll) -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
     <div x-data="{ open: false }" class="flex justify-center items-center min-h-screen">
@@ -66,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
-
     <script>
         AOS.init();
     </script>
