@@ -1,24 +1,26 @@
 <?php
-// Autoloader manual untuk Endroid QR Code
+// Fungsi autoloader sederhana
 spl_autoload_register(function ($class) {
-    // Tentukan prefix namespace dan file path
-    $prefix = 'Endroid\\QrCode\\';
-    $base_dir = __DIR__ . '/';  // Gunakan direktori utama karena tidak ada folder
+    // Mengubah namespace menjadi path file
+    $classPath = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
 
-    // Cek apakah class berada dalam namespace yang sesuai
-    $len = strlen($prefix);
-    if (strncmp($prefix, $class, $len) !== 0) {
-        return;
-    }
-
-    // Ambil class relatif tanpa namespace
-    $relative_class = substr($class, $len);
-
-    // Tentukan path ke file
-    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-
-    // Jika file ditemukan, load
-    if (file_exists($file)) {
-        require $file;
+    if (file_exists($classPath)) {
+        require_once $classPath;
+    } else {
+        die("Class file for '{$class}' not found at '{$classPath}'.");
     }
 });
+
+// Memuat file functions.php
+if (file_exists(__DIR__ . '/functions.php')) {
+    include_once __DIR__ . '/functions.php';
+} else {
+    die('functions.php not found. Please make sure the file exists.');
+}
+
+// Memuat file endroid-qr-code.php
+if (file_exists(__DIR__ . '/endroid-qr-code.php')) {
+    include_once __DIR__ . '/endroid-qr-code.php';
+} else {
+    die('endroid-qr-code.php not found. Please make sure the file exists.');
+}
