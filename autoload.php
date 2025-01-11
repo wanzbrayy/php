@@ -1,9 +1,10 @@
 <?php
-// Fungsi autoloader sederhana
+// Fungsi autoloader sederhana untuk memuat class secara otomatis
 spl_autoload_register(function ($class) {
-    // Mengubah namespace menjadi path file
+    // Konversi namespace menjadi path file
     $classPath = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
 
+    // Periksa apakah file class ada
     if (file_exists($classPath)) {
         require_once $classPath;
     } else {
