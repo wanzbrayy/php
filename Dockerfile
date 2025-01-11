@@ -10,6 +10,8 @@ COPY success.php .
 COPY cancel.php .
 COPY functions.php .
 COPY config.php .
+COPY autoload.php .
+COPY endroid-qr-code.php .
 
 # Update sistem, instal dependensi, dan instal ekstensi curl
 RUN apt-get update && apt-get install -y \
