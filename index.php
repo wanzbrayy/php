@@ -37,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="bg-gray-100 text-gray-900 font-sans">
     <div x-data="{ open: false }" class="flex justify-center items-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md" data-aos="fade-up" data-aos-duration="1000">
-            <h1 class="text-3xl font-bold text-center text-blue-500 mb-6">DANA Payment Integration</h1>
+            <h1 class="text-3xl font-bold text-center text-blue-500 mb-6">PAY-WANZOFC</h1>
             <form method="POST" action="" class="space-y-4" @submit="open = true">
                 <div>
-                    <label for="amount" class="block text-lg font-medium text-gray-700">Amount (IDR):</label>
+                    <label for="amount" class="block text-lg font-medium text-gray-700">amount (IDR):</label>
                     <input type="number" name="amount" id="amount" class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
                 <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <i class="fas fa-credit-card"></i> Pay Now
+                    <i class="fas fa-credit-card"></i> pay Now
                 </button>
             </form>
             <div x-show="open" class="flex justify-center items-center">
