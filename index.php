@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/autoload.php';
-require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/endroid-qr-code.php';
 include_once __DIR__ . '/functions.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
