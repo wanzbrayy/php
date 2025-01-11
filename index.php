@@ -1,18 +1,11 @@
 <?php
-// Memuat autoload.php yang berfungsi untuk autoload class dan file lainnya
 require_once __DIR__ . '/autoload.php';
-  // Pastikan autoload.php berada di lokasi yang benar
-
-// Memuat functions.php untuk menggunakan fungsi-fungsi yang telah didefinisikan
-include_once __DIR__ . '/functions.php';  // Pastikan functions.php berada di direktori yang benar
-
+require_once __DIR__ . '/endroid-qr-code.php';
+include_once __DIR__ . '/functions.php';
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $_POST['amount'];
-
-    // Nomor DANA dan nama yang dituju
     $danaNumber = '0895402567224';
     $name = 'KEPO LOE';
 
