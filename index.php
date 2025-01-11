@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/endroid-qr-code.php';
 include_once __DIR__ . '/functions.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,6 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
     <div x-data="{ open: false }" class="flex justify-center items-center min-h-screen">
