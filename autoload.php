@@ -1,27 +1,25 @@
 <?php
-// Fungsi autoloader sederhana untuk memuat class secara otomatis
-spl_autoload_register(function ($class) {
-    // Konversi namespace menjadi path file
-    $classPath = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
-
-    // Periksa apakah file class ada
-    if (file_exists($classPath)) {
-        require_once $classPath;
-    } else {
-        die("Class file for '{$class}' not found at '{$classPath}'.");
+class Config
+{
+    private static $config;
+    public static function loadConfig()
+    {
+        if (self::$config === null) {
+            self::$config = include __DIR__ . '/config.php';
+        }
+        return self::$config;
     }
-});
+    public static function getPayPalConfig()
+    {
+        return self::loadConfig();
+    }
+    public static function getPayPalLink($amount, $currency = 'USD')
+    {
+        $config = self::loadConfig();
+        $clientId = $config['client_id'];
+        $returnUrl = $config['return_url'];
+        $cancelUrl = $config['cancel_url'];
 
-// Memuat file functions.php
-if (file_exists(__DIR__ . '/functions.php')) {
-    include_once __DIR__ . '/functions.php';
-} else {
-    die('functions.php not found. Please make sure the file exists.');
-}
-
-// Memuat file endroid-qr-code.php
-if (file_exists(__DIR__ . '/endroid-qr-code.php')) {
-    include_once __DIR__ . '/endroid-qr-code.php';
-} else {
-    die('endroid-qr-code.php not found. Please make sure the file exists.');
+        return "{$config['api_base_url']}/checkoutnow?amount=$amount&currency_code=$currency&client_id=$clientId&return_url=$returnUrl&cancel_url=$cancelUrl";
+    }
 }
