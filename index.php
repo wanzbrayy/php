@@ -1,22 +1,18 @@
 <?php
+require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/autoload.php';
 require_once __DIR__ . '/endroid-qr-code.php';
 include_once __DIR__ . '/functions.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $_POST['amount'];
-    $danaNumber = '0895402567224';
-    $name = 'KEPO LOE';
-    $danaPaymentUrl = "https://link.dana.id/qr/$danaNumber/$amount";
-    $qrCode = new QrCode($danaPaymentUrl);
-    $writer = new PngWriter();
-    $qrCode->setSize(300);
-    $image = $writer->write($qrCode); 
-    $qrFilePath = 'qrcode.png';
-    file_put_contents($qrFilePath, $image->getString());
+    $currency = 'USD';
+    $config = Config::getPayPalConfig();
+    $clientId = $config['client_id'];
+    $clientSecret = $config['client_secret'];
+    $paypalLink = Config::getPayPalLink($amount, $currency);
     echo "<div class='flex justify-center mt-6'>
-            <h2 class='text-lg font-semibold text-center mb-4'>Scan QR Code for Payment</h2>
-            <img src='$qrFilePath' alt='QR Code for payment' class='w-64 h-64'>
-            <p class='text-center mt-2'>Pay to: $name ($danaNumber)</p>
+            <h2 class='text-lg font-semibold text-center mb-4'>Proceed to PayPal Payment</h2>
+            <a href='$paypalLink' target='_blank' class='block w-full py-2 text-center bg-blue-600 text-white rounded-md hover:bg-blue-700'>Pay $amount $currency via PayPal</a>
           </div>";
 }
 ?>
@@ -40,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1 class="text-3xl font-bold text-center text-blue-500 mb-6">PAY-WANZOFC</h1>
             <form method="POST" action="" class="space-y-4" @submit="open = true">
                 <div>
-                    <label for="amount" class="block text-lg font-medium text-gray-700">amount (IDR):</label>
+                    <label for="amount" class="block text-lg font-medium text-gray-700">Amount (USD):</label>
                     <input type="number" name="amount" id="amount" class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
                 <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <i class="fas fa-credit-card"></i> pay Now
+                    <i class="fas fa-credit-card"></i> Pay Now
                 </button>
             </form>
             <div x-show="open" class="flex justify-center items-center">
