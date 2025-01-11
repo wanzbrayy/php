@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/autoload.php';
 require_once __DIR__ . '/endroid-qr-code.php';
 include_once __DIR__ . '/functions.php';
@@ -7,8 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $_POST['amount'];
     $currency = 'USD';
     $config = Config::getPayPalConfig();
-    $clientId = $config['client_id'];
-    $clientSecret = $config['client_secret'];
     $paypalLink = Config::getPayPalLink($amount, $currency);
     echo "<div class='flex justify-center mt-6'>
             <h2 class='text-lg font-semibold text-center mb-4'>Proceed to PayPal Payment</h2>
