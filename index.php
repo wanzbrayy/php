@@ -1,6 +1,10 @@
 <?php
 include 'functions.php';
-require 'autoload.php';  // Memuat autoloader manual
+if (file_exists('autoload.php')) {
+    require 'autoload.php'; // Memuat autoloader manual jika file tersedia
+} else {
+    die('Autoload file not found. Please make sure autoload.php is present.');
+}
 
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
@@ -13,13 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = 'KEPO LOE';
 
     // Membuat URL DANA untuk pembayaran
-    $danaPaymentUrl = "https://link.dana.id/qr/$danaNumber/$amount";  // Pastikan format URL sesuai dengan API DANA
+    $danaPaymentUrl = "https://link.dana.id/qr/$danaNumber/$amount"; // URL DANA
 
     // Membuat QR Code dari URL DANA
     $qrCode = new QrCode($danaPaymentUrl);
     $writer = new PngWriter();
     $qrCode->setSize(300); // Ukuran QR code
-    $image = $writer->write($qrCode);  // Menyimpan gambar QR Code
+    $image = $writer->write($qrCode); // Menyimpan gambar QR Code
 
     // Menyimpan gambar QR ke file
     $qrFilePath = 'qrcode.png';
