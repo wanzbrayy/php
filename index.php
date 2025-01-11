@@ -1,6 +1,6 @@
 <?php
 // Memuat autoload.php yang berfungsi untuk autoload class dan file lainnya
-require_once __DIR__ . '/../autoload.php';
+require_once __DIR__ . '/autoload.php';
   // Pastikan autoload.php berada di lokasi yang benar
 
 // Memuat functions.php untuk menggunakan fungsi-fungsi yang telah didefinisikan
